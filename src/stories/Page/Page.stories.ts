@@ -16,10 +16,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const LoggedOut: Story = {};
-
-// More on component testing: https://storybook.js.org/docs/writing-tests/interaction-testing
-export const LoggedIn: Story = {
+export const LoggedOut: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const loginButton = canvas.getByRole('button', { name: /Log in/i });
@@ -29,5 +26,24 @@ export const LoggedIn: Story = {
 
     const logoutButton = canvas.getByRole('button', { name: /Log out/i });
     await expect(logoutButton).toBeInTheDocument();
+    await userEvent.click(logoutButton);
+
+    const oldLogoutButton = canvas.queryByRole('button', { name: /Log out/i })
+    await expect(oldLogoutButton).not.toBeInTheDocument();
+
+    const signupButton = canvas.getByRole('button', { name: /Sign up/i });
+    await expect(signupButton).toBeInTheDocument();
+    await userEvent.click(signupButton);
+  },
+};
+
+// More on component testing: https://storybook.js.org/docs/writing-tests/interaction-testing
+export const LoggedIn: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const loginButton = canvas.getByRole('button', { name: /Log in/i });
+    await expect(loginButton).toBeInTheDocument();
+    await userEvent.click(loginButton);
+    await expect(loginButton).not.toBeInTheDocument();
   },
 };

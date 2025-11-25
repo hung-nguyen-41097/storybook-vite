@@ -1,0 +1,21 @@
+Use this prompt with an LLM to generate a new React + TypeScript component (story + CSS + index) for this project.
+
+Instructions for the model:
+- Produce a file tree and exact file contents only. Do NOT include additional commentary.
+- Use TypeScript + React (function components) and the automatic JSX runtime (no default React import required).
+- Files to produce:
+  - src/stories/<ComponentName>/<ComponentName>.tsx
+  - src/stories/<ComponentName>/<component-lower>.css
+  - src/stories/<ComponentName>/<ComponentName>.stories.ts
+  - src/stories/<ComponentName>/index.ts
+- ComponentProps must be exported as an interface named <ComponentName>Props.
+- The component should accept common props: children or label, className, style, and an optional onClick.
+- Use semantic class names like `storybook-<component-lower>` and size modifiers `storybook-<component-lower>--small|--medium|--large`.
+- The story should be compatible with Storybook (simple default export + an example story).
+- Keep code concise and idiomatic. Prefer explicit prop types rather than any. Avoid project-specific dependencies.
+- Include a short one-line description at top of each file as a comment.
+
+Example prompt usage:
+"Create a component named `MyWidget` with a label prop and a click handler. Output the four files specified above with ready-to-write content."
+
+Replace occurrences of <ComponentName> and <component-lower> with the requested component name and its kebab/lower form.

@@ -1,0 +1,62 @@
+@import './colors';
+
+$lato-path: './fonts/lato';
+
+$font-types: 'Lato' 'Regular' normal, 'Lato' 'Italic' italic, 'Lato' 700 normal;
+
+@each $family, $weight, $style in $font-types {
+  @font-face {
+    font-family: $family;
+    font-style: $style;
+    font-weight: $weight;
+    src: url('#{$lato-path}/Lato-#{$weight}.eot');
+    src: url('#{$lato-path}/Lato-#{$weight}.eot?#iefix') format('embedded-opentype'),
+      url('#{$lato-path}/Lato-#{$weight}.woff2') format('woff2'),
+      url('#{$lato-path}/Lato-#{$weight}.woff') format('woff'),
+      url('#{$lato-path}/Lato-#{$weight}.ttf') format('truetype');
+  }
+}
+
+$ff: 'Lato', sans-serif;
+$family: 'Lato', sans-serif !important;
+
+@mixin truncate($width: 100%) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: $width;
+}
+
+@mixin font-size($type) {
+  @if ($type == 'sm') {
+    font-size: 11px;
+  } @else if ($type == 'md') {
+    font-size: 11px;
+  } @else if ($type == 'lg') {
+    font-size: 13px;
+  } @else if ($type == 'xl') {
+    font-size: 2rem;
+  } @else if ($type == 'xxl') {
+    font-size: 3rem;
+  }
+}
+
+@mixin italic {
+  font-style: italic;
+}
+
+@mixin muted {
+  color: $muted;
+}
+
+@mixin bold {
+  font-weight: bold;
+}
+
+@mixin fw400 {
+  font-weight: 400;
+}
+
+@mixin uc {
+  text-transform: uppercase;
+}

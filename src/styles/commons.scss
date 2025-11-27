@@ -1,0 +1,28 @@
+@import './colors';
+@import './sizes';
+@import './common';
+
+html { font-size: 13px; }
+
+* {
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+input,
+select { font-size: 100%; }
+
+[type='checkbox'],
+[type='radio'] { margin: 0; padding: 0; }
+
+button {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  cursor: pointer;
+  outline: none;
+  text-shadow: none;
+  text-transform: uppercase;
+}
+
+.no-scroll { @include crop; }

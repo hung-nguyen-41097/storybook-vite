@@ -1,0 +1,18 @@
+$sizes: 'sm' 0.875, 'md' 1, 'lg' 1.25, 'xl' 1.5, 'xxl' 1.75;
+
+$small: 640;
+$medium: 960;
+$large: 1280;
+$xlarge: 1600;
+
+$breakpoint-small: $small + px; // Phone landscape
+$breakpoint-medium: $medium + px; // Tablet Landscape
+$breakpoint-large: $large + px; // Desktop
+$breakpoint-xlarge: $xlarge + px; // Large Screens
+
+:export {
+  lg: $large;
+  md: $medium;
+  sm: $small;
+  xlg: $xlarge;
+}

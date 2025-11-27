@@ -1,5 +1,5 @@
 // {{NAME}} component
-import "./{{kebab}}.css";
+import "./{{kebab}}.scss";
 
 export interface {{NAME}}Props {
   /** Optional label/content */

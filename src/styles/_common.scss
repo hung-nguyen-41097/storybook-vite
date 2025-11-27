@@ -1,0 +1,256 @@
+// Centralized utility mixins and helpers (used by commons.scss)
+// Provides safer unit handling and compact mixins.
+
+@function to-px($value, $unit: px) {
+  // If $value is a number without unit, append the unit.
+  @if type-of($value) == "number" and unit($value) == "" {
+    @return $value * 1#{$unit};
+  }
+  // Otherwise, return as-is (already has unit or is a string like 0 or inherit).
+  @return $value;
+}
+
+// Layout helpers
+@mixin center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin row-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+@mixin crop {
+  overflow: hidden;
+}
+
+@mixin pointer {
+  cursor: pointer;
+}
+
+@mixin hover {
+  cursor: pointer;
+  &:hover {
+    background: #cccccc80;
+  }
+}
+
+@mixin hover-text {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@mixin hidden {
+  display: none;
+}
+
+@mixin match-parent-size {
+  height: 100%;
+  width: 100%;
+}
+
+@mixin match-width {
+  flex: 1;
+  width: 100%;
+}
+
+@mixin no-padding {
+  padding: 0;
+}
+@mixin no-margin {
+  margin: 0;
+}
+@mixin no-select {
+  user-select: none;
+}
+
+// Size helpers
+@mixin circle($size) {
+  $s: to-px($size);
+  border-radius: 50%;
+  height: $s;
+  max-height: $s;
+  max-width: $s;
+  min-height: $s;
+  min-width: $s;
+  width: $s;
+}
+
+@mixin square($size) {
+  $s: to-px($size);
+  height: $s;
+  width: $s;
+}
+
+@mixin square-corners {
+  border-radius: 0;
+}
+@mixin round-all {
+  border-radius: 100px;
+}
+
+@mixin round-left {
+  @include round-all;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+@mixin round-right {
+  @include round-all;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+// Generic margin/padding helpers that accept unitless numbers or unitful values.
+@mixin m($position, $size) {
+  $s: to-px($size);
+  @if $position == "r" {
+    margin-right: $s;
+  } @else if $position == "l" {
+    margin-left: $s;
+  } @else if $position == "t" {
+    margin-top: $s;
+  } @else if $position == "b" {
+    margin-bottom: $s;
+  } @else if $position == "x" {
+    margin-left: $s;
+    margin-right: $s;
+  } @else if $position == "y" {
+    margin-top: $s;
+    margin-bottom: $s;
+  } @else {
+    margin: $s;
+  }
+}
+
+@mixin p($position, $size) {
+  $s: to-px($size);
+  @if $position == "r" {
+    padding-right: $s;
+  } @else if $position == "l" {
+    padding-left: $s;
+  } @else if $position == "t" {
+    padding-top: $s;
+  } @else if $position == "b" {
+    padding-bottom: $s;
+  } @else if $position == "x" {
+    padding-left: $s;
+    padding-right: $s;
+  } @else if $position == "y" {
+    padding-top: $s;
+    padding-bottom: $s;
+  } @else {
+    padding: $s;
+  }
+}
+
+// Border radius shorthand - accepts '', 'r', 'l', 't', 'b', 'tr', 'tl', 'br', 'bl'
+// Example: @include border-radius('r', 5px);
+@mixin border-radius($position: "", $size: 3px) {
+  @if $position == "r" {
+    @include border-radius("tr", $size);
+    @include border-radius("br", $size);
+  } @else if $position == "l" {
+    @include border-radius("tl", $size);
+    @include border-radius("bl", $size);
+  } @else if $position == "t" {
+    @include border-radius("tr", $size);
+    @include border-radius("tl", $size);
+  } @else if $position == "b" {
+    @include border-radius("br", $size);
+    @include border-radius("bl", $size);
+  } @else if $position == "tr" {
+    border-top-right-radius: $size;
+  } @else if $position == "tl" {
+    border-top-left-radius: $size;
+  } @else if $position == "br" {
+    border-bottom-right-radius: $size;
+  } @else if $position == "bl" {
+    border-bottom-left-radius: $size;
+  } @else {
+    border-radius: $size;
+  }
+}
+
+// Border helper - expects $color to be defined in colors.scss (e.g. $grey1)
+// Example: @include border('r', 2, $primary, dashed);
+@mixin border($position: "", $size: 1, $color: $grey1, $type: solid) {
+  $s: to-px($size);
+  @if $position == "r" {
+    border-right: $s $type $color;
+  } @else if $position == "l" {
+    border-left: $s $type $color;
+  } @else if $position == "t" {
+    border-top: $s $type $color;
+  } @else if $position == "b" {
+    border-bottom: $s $type $color;
+  } @else if $position == "x" {
+    border-left: $s $type $color;
+    border-right: $s $type $color;
+  } @else if $position == "y" {
+    border-top: $s $type $color;
+    border-bottom: $s $type $color;
+  } @else {
+    border: $s $type $color;
+  }
+}
+
+@mixin no-border {
+  border: none;
+}
+
+@mixin form-control-base {
+  cursor: pointer;
+  outline: none;
+}
+
+@mixin label {
+  @include m("b", 0);
+  color: #000;
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: auto;
+}
+
+@mixin link {
+  color: $link-text;
+  text-decoration: underline;
+  &:hover {
+    color: $link-text--hover;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+@mixin box-shadow(
+  $offsetX: 0,
+  $offsetY: 0,
+  $blurRadius: 0,
+  $spreadRadius: 0,
+  $color: rgba(0, 0, 0, 0.16)
+) {
+  box-shadow: to-px($offsetX) to-px($offsetY) to-px($blurRadius)
+    to-px($spreadRadius) $color;
+}

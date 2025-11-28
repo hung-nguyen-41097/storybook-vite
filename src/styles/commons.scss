@@ -1,19 +1,23 @@
-@import './colors';
-@import './sizes';
-@import './common';
-
-html { font-size: 13px; }
+@use "./colors" as *;
+@use "./sizes" as *;
+@use "./common" as *;
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 
 * {
   box-sizing: border-box;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 input,
-select { font-size: 100%; }
+select {
+  font-size: 100%;
+}
 
-[type='checkbox'],
-[type='radio'] { margin: 0; padding: 0; }
+[type="checkbox"],
+[type="radio"] {
+  margin: 0;
+  padding: 0;
+}
 
 button {
   background: none;
@@ -25,4 +29,6 @@ button {
   text-transform: uppercase;
 }
 
-.no-scroll { @include crop; }
+.no-scroll {
+  @include crop;
+}

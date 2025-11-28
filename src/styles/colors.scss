@@ -30,118 +30,21 @@ $c-bg: #f5f5f5;
 $c-border: #e3e9f1;
 $c-shadow: rgba(0, 0, 0, 0.36);
 
-// Legacy aliases mapped to palette (keeps old variable names working)
-$pulse-primary-1: $c-primary-500;
-$pulse-primary-2: $c-primary-600;
-$pulse-darkest-blue: $c-primary-600;
-$pulse-dark-blue: $c-primary-500;
-$pulse-blue: $c-primary-400;
-$pulse-crystal-blue: $c-primary-200;
-$pulse-button-blue-hover: $c-primary-600;
-$pulse-button-light-blue-hover: $c-primary-500;
-$pulse-header-blue: $c-primary-500;
-$pulse-button-blue-submit: $c-primary-600;
-$pulse-lightblue: $c-bg;
-$pulse-button-darkblue: $c-primary-500;
-$pulse-blue-one: $c-primary-400;
-
-$pulse-darkest-green: $c-secondary-600;
-$pulse-dark-green: $c-secondary-500;
-$pulse-green: $c-secondary-400;
-$pulse-green-approved: $c-success;
-$pulse-light-green: $c-secondary-200;
-
-$pulse-darkest: $c-dark;
-$pulse-dark: $c-dark-700;
-$pulse-lightgrey: $c-muted !default;
-$pulse-light: $c-bg;
-$pulse-lightest: $c-surface;
-$pulse-required-grey: $c-muted !default;
-$pulse-grey-flag: lighten($c-primary-200, 30%);
-
-$pulse-white: $c-surface;
-$pulse-text-color: $c-text;
-$pulse-grey: $c-border;
-$pulse-background-color: $c-bg;
-
-$grey1: $c-bg;
-$grey2: $c-surface;
-$grey3: $c-muted !default;
-$cool-grey: $c-bg;
-$light-grey: $c-bg;
-$border-color: $c-border;
-$border-color1: $c-border;
-
+$primary: $c-primary-500;
+$secondary: $c-secondary-500;
 $default: $c-bg;
-$default-hover: $pulse-primary-1;
 $success: $c-success;
-$success-hover: darken($c-success, 10%);
 $warning: $c-warning;
 $danger: $c-danger;
 $muted: $c-dark-700;
-$selected: rgba(102, 198, 191, 0.2);
-$disabled: #fcfcfc;
-$highlight-color: $selected;
-$hover: $grey1;
-$pulse-hover: rgba($c-warning, 0.1);
-$pulse-selected: rgba($c-secondary-400, 0.2);
-
-$link-text: $c-secondary-500;
-$link-text--hover: $pulse-dark-blue;
-$pulse-copy-text: $pulse-primary-1;
-
-$text-color--default: $c-text;
-$text-color--input: $c-dark;
-
-$pulse-secondary-1: $pulse-green;
-$pulse-secondary-2: $pulse-darkest-green;
-$pulse-cerulean-blue: $pulse-primary-500;
-$pulse-black: $c-dark;
-$pulse-black-1: #000;
-$pulse-red: $c-danger;
-$pulse-orange: $c-orange;
-
-$tab-default: $c-dark-700;
-$tab-selected: darken($c-dark-700, 10%);
-$tab-background--default: $c-surface;
-
-$primary: $pulse-dark-blue;
-$primary-hover: $pulse-darkest-blue;
-
-$secondary: $pulse-green;
-$secondary-hover: $pulse-darkest-green;
-
-$pulse-select-background: lighten($c-bg, 2%);
-$pulse-background: $c-bg;
-
-$pulse-red-hover: lighten($c-danger, 5%);
-$pulse-escalated: $c-danger;
-$pulse-pto: #ffd14a;
-$pulse-non-charge: $c-accent;
-$pulse-standard-tentative: $c-secondary-400;
-$pulse-escalated-tentative-1: $c-danger;
-$pulse-escalated-tentative-2: lighten($c-danger, 8%);
-$pulse-pto-tentative-1: lighten($pulse-pto, 8%);
-$pulse-pto-tentative-2: lighten($pulse-pto, 18%);
-$pulse-no-charge-tentative-1: lighten($c-accent, 6%);
-$pulse-no-charge-tentative-2: lighten($c-accent, 18%);
-$pulse-un-approved-1: $c-primary-400;
-$pulse-un-approved-2: lighten($c-primary-400, 18%);
-
-/* Info bar styles (map to base tokens) */
-$pulse-info-bar-warning-banner-background: lighten($c-warning, 36%);
-$pulse-info-bar-error-banner-background: lighten($c-danger, 36%);
-$pulse-info-bar-info-banner-background: lighten($c-primary-400, 48%);
-$pulse-info-bar-success-banner-background: lighten($c-success, 48%);
-$pulse-info-bar-default-banner-background: $c-bg;
-$pulse-info-bar-info-icon-background: $c-primary-500;
-$pulse-info-bar-warning-icon-background: darken($c-warning, 6%);
-$pulse-info-bar-error-icon-background: $c-danger;
-$pulse-info-bar-success-icon-background: $c-success;
-$pulse-info-bar-default-icon-background: $c-dark-700;
 
 $pulse-placeholder: #808080;
 $shadow: $c-shadow;
+
+// text & misc
+$text-color--default: $c-text;
+$text-color--input: $c-dark;
+$disabled: #fcfcfc;
 
 $colors: "default" $default $text-color--default, "danger" $danger,
   "success" $success, "warning" $warning $text-color--default,
@@ -191,9 +94,3 @@ $colors: "default" $default $text-color--default, "danger" $danger,
     }
   }
 }
-$select-option-hover: #ffedbc;
-
-$pulse-grey-tag-text: #5a5b5e;
-$pulse-grey-tag-bg: #e2e6ed;
-
-$border-color2: rgba(0, 0, 0, 0.1);

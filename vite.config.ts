@@ -13,6 +13,12 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 export default defineConfig({
   plugins: [react()],
   test: {
+    coverage: {
+      exclude: [
+        '**/*.css',
+        '**/*.scss',
+      ],
+    },
     projects: [{
       extends: true,
       plugins: [
@@ -31,7 +37,7 @@ export default defineConfig({
             browser: 'chromium'
           }]
         },
-        setupFiles: ['.storybook/vitest.setup.ts']
+        setupFiles: ['.storybook/vitest.setup.ts'],
       }
     }]
   }

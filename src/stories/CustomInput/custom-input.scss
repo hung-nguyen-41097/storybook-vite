@@ -1,0 +1,110 @@
+@use "../../styles/commons.scss" as *;
+
+.pulse-input__root {
+  // hide increase and decrease button in type "number"
+  .pulse-input__input {
+    // prevent pulse-repo override
+    height: auto;
+    font-size: 12px;
+    color: #222222;
+    font-style: normal;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      @include m("", 0);
+      appearance: none;
+    }
+
+    &::placeholder {
+      font-style: italic;
+      color: $muted;
+    }
+
+    &[type="number"] {
+      appearance: textfield;
+    }
+
+    &:focus {
+      border: none;
+    }
+  }
+
+  .pulse-input__inputBaseRoot {
+    @include p("", 0);
+    background-color: #fff;
+    font-size: 12px;
+
+    &:focus {
+      border: 0;
+      outline: none;
+    }
+
+    .pulse-input__input {
+      @include border();
+      @include p("x", 12);
+      @include p("y", 0);
+      box-sizing: border-box;
+      font-family: "Lato", sans-serif;
+      height: 32px;
+      line-height: 0;
+
+      &.pulse-input__input--error {
+        border: 1px solid $danger;
+      }
+
+      &.pulse-input__input--disabled {
+        background-color: $grey2;
+        cursor: not-allowed;
+        -webkit-text-fill-color: #888888;
+        color: #888888;
+      }
+    }
+
+    .pulse-input__input-multiline {
+      @include p("", 8);
+      line-height: 14px;
+    }
+  }
+
+  .pulse-input__required-label {
+    color: $pulse-required-grey;
+    font-size: 11px;
+    text-transform: capitalize;
+    font-weight: normal;
+
+    &--error {
+      color: $danger;
+    }
+  }
+
+  .pulse-input__error {
+    color: $danger;
+    font-size: 11px;
+  }
+
+  .input-header__label {
+    @include match-width;
+    @include m("b", 6);
+    display: flex;
+    font-size: 11px;
+    font-weight: bold;
+    justify-content: space-between;
+    text-transform: uppercase;
+
+    &--disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .input-header__label-tag {
+    @include border-radius("", 2px);
+    @include m("l", 4);
+    @include m("t", -2);
+    @include p("x", 4);
+    @include p("y", 2);
+    font-size: 10px;
+    color: $pulse-grey-tag-text;
+    background-color: $pulse-grey-tag-bg;
+    font-weight: normal;
+  }
+}

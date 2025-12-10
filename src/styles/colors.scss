@@ -1,79 +1,71 @@
 /*
-  Color system consolidated to a 20-color palette.
-  Goal: keep a limited set of base tokens and map legacy names to these tokens
-  to reduce cognitive load and ensure consistent theming.
+  Color Palette Definition:
+  Primary Colors: Core brand colors that dominate the interface.
+  Secondary Colors: Supporting colors used for accents, highlights, or specific elements.
+  Neutral Colors: Grays, blacks, and whites for text, backgrounds, and borders, often in various shades.
+  Semantic Colors: Colors assigned to specific meanings (e.g., success, error, warning, info).
+
+  Naming Conventions:
+  - Descriptive Naming: Use clear and intuitive names for colors, avoiding generic terms like "blue1".
+  - Semantic Naming: For colors with specific functions, use names that reflect their purpose (e.g., $color-success, $color-error).
+  - Base Color Naming with Variations: Define a base color and then use modifiers for variations
+    (e.g., $color-primary, $color-primary-light, $color-primary-dark).
 */
 
-// Base palette (20 tokens)
-$c-primary-600: #005377;
-$c-primary-500: #00739a;
-$c-primary-400: #0288a1;
-$c-primary-200: #5dabaf;
+$color-primary: #00739a;
+$color-primary-light: #5dabaf;
+$color-primary-dark: #005377;
 
-$c-secondary-600: #02979b;
-$c-secondary-500: #00a8a5;
-$c-secondary-400: #2ab0ae;
+$color-secondary: #00a8a5;
+$color-secondary-light: #2ab0ae;
+$color-secondary-dark: #02979b;
 
-$c-success: #53a92c;
-$c-danger: #d93a40;
-$c-warning: #ffc20e;
+$color-success: #53a92c;
+$color-error: #d93a40;
+$color-warning: #ffc20e;
+$color-info: #6015d9;
 
-$c-accent: #6015d9;
-$c-orange: #ff8900;
+$color-text: #121212;
+$color-white: #ffffff;
+$color-grey: #666666;
+$color-bg: #f5f5f5;
+$color-border: #e3e9f1;
+$color-muted: #393c49;
+$color-shadow: rgba(0, 0, 0, 0.36);
 
-$c-dark: #222222;
-$c-dark-700: #393c49;
+$text-color--input: #222222; // c-dark
+$color-disabled: #fcfcfc;
 
-$c-text: #121212;
-$c-surface: #ffffff;
-$c-bg: #f5f5f5;
-$c-border: #e3e9f1;
-$c-shadow: rgba(0, 0, 0, 0.36);
-
-$primary: $c-primary-500;
-$secondary: $c-secondary-500;
-$default: $c-bg;
-$success: $c-success;
-$warning: $c-warning;
-$danger: $c-danger;
-$muted: $c-dark-700;
-
-$pulse-placeholder: #808080;
-$shadow: $c-shadow;
-
-// text & misc
-$text-color--default: $c-text;
-$text-color--input: $c-dark;
-$disabled: #fcfcfc;
-
-$colors: "default" $default $text-color--default, "danger" $danger,
-  "success" $success, "warning" $warning $text-color--default,
-  "disabled" $disabled #666, "secondary" $secondary, "primary" $primary;
+// color utilities map (uses semantic tokens)
+$colors: "default" $color-bg $color-text, "danger" $color-error,
+  "success" $color-success, "warning" $color-warning $color-text,
+  "disabled" $disabled $color-grey, "secondary" $color-secondary,
+  "primary" $color-primary;
 
 @mixin default {
-  background: $default;
-  background-color: $default;
-  color: #666;
+  background: $color-bg;
+  background-color: $color-bg;
+  color: $gray-600;
 }
 @mixin success {
-  background: $success;
-  background-color: $success;
-  color: #fff;
+  background: $color-success;
+  background-color: $color-success;
+  color: $white;
 }
 @mixin primary {
-  background: $primary;
-  background-color: $primary;
-  color: #fff;
+  background: $color-primary;
+  background-color: $color-primary;
+  color: $white;
 }
 @mixin secondary {
-  background: $secondary;
-  background-color: $secondary;
-  color: #fff;
+  background: $color-secondary;
+  background-color: $color-secondary;
+  color: $white;
 }
 @mixin danger {
-  background: $danger;
-  background-color: $danger;
-  color: #fff;
+  background: $color-error;
+  background-color: $color-error;
+  color: $white;
 }
 
 @mixin disabled {
@@ -81,16 +73,17 @@ $colors: "default" $default $text-color--default, "danger" $danger,
   pointer-events: none;
 }
 
+// Utility classes (renamed from .pulse- to neutral .u-color-)
 @each $name, $color, $textColor in $colors {
-  .pulse-#{$name} {
+  .u-color-#{$name} {
     background: $color;
     background-color: $color;
     @if $textColor {
       color: $textColor;
       stroke: $textColor;
     } @else {
-      color: #fff;
-      stroke: #fff;
+      color: $white;
+      stroke: $white;
     }
   }
 }

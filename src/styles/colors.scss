@@ -39,7 +39,7 @@ $color-disabled: #fcfcfc;
 // color utilities map (uses semantic tokens)
 $colors: "default" $color-bg $color-text, "danger" $color-error,
   "success" $color-success, "warning" $color-warning $color-text,
-  "disabled" $disabled $color-grey, "secondary" $color-secondary,
+  "disabled" $color-disabled $color-grey, "secondary" $color-secondary,
   "primary" $color-primary;
 
 @mixin default {
@@ -50,22 +50,22 @@ $colors: "default" $color-bg $color-text, "danger" $color-error,
 @mixin success {
   background: $color-success;
   background-color: $color-success;
-  color: $white;
+  color: $color-white;
 }
 @mixin primary {
   background: $color-primary;
   background-color: $color-primary;
-  color: $white;
+  color: $color-white;
 }
 @mixin secondary {
   background: $color-secondary;
   background-color: $color-secondary;
-  color: $white;
+  color: $color-white;
 }
 @mixin danger {
   background: $color-error;
   background-color: $color-error;
-  color: $white;
+  color: $color-white;
 }
 
 @mixin disabled {
@@ -82,8 +82,8 @@ $colors: "default" $color-bg $color-text, "danger" $color-error,
       color: $textColor;
       stroke: $textColor;
     } @else {
-      color: $white;
-      stroke: $white;
+      color: $color-white;
+      stroke: $color-white;
     }
   }
 }

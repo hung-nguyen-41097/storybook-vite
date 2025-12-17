@@ -1,10 +1,10 @@
 @use "../../styles/colors" as *;
 
 $types: (
-  warning: $warning,
-  error: $danger,
-  success: $success,
-  default: $primary,
+  warning: $color-warning,
+  error: $color-error,
+  success: $color-success,
+  default: $color-primary,
 );
 
 .info-bar {
@@ -22,7 +22,7 @@ $types: (
   }
 
   &__icon-wrapper {
-    color: $c-surface;
+    color: $color-white;
     display: flex;
     align-items: center;
     justify-content: center;

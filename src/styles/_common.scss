@@ -1,12 +1,25 @@
 // Centralized utility mixins and helpers (used by commons.scss)
 // Provides safer unit handling and compact mixins.
+@use "sass:meta" as meta;
+@use "sass:math" as math;
 
-@function to-px($value, $unit: px) {
-  // If $value is a number without unit, append the unit.
-  @if type-of($value) == "number" and unit($value) == "" {
-    @return $value * 1#{$unit};
+@function to-px($value) {
+  // Non-numbers (auto, inherit, etc.)
+  @if meta.type-of($value) != "number" {
+    @return $value;
   }
-  // Otherwise, return as-is (already has unit or is a string like 0 or inherit).
+
+  // Zero never needs unit
+  @if $value == 0 {
+    @return 0;
+  }
+
+  // Unitless number → px
+  @if math.is-unitless($value) {
+    @return $value * 1px; // ✅ real unit math
+  }
+
+  // Already has unit
   @return $value;
 }
 
@@ -186,7 +199,7 @@
 
 // Border helper - expects $color to be defined in colors.scss (e.g. $grey1)
 // Example: @include border('r', 2, $primary, dashed);
-@mixin border($position: "", $size: 1, $color: "#e5e5e5", $type: solid) {
+@mixin border($position: "", $size: 1, $color: #e5e5e5, $type: solid) {
   $s: to-px($size);
   @if $position == "r" {
     border-right: $s $type $color;

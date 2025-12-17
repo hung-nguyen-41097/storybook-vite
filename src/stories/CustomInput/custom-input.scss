@@ -31,7 +31,6 @@
   .custom-input__input-base-root {
     @include p("", 0);
     background-color: $color-white;
-    font-size: 12px;
 
     &:focus {
       border: 0;
@@ -43,12 +42,11 @@
       @include p("x", 12);
       @include p("y", 0);
       box-sizing: border-box;
-      font-family: "Lato", sans-serif;
       height: 32px;
       line-height: 0;
 
       &.custom-input__input--error {
-        border: 1px solid $danger;
+        border: 1px solid $color-error;
       }
 
       &.custom-input__input--disabled {

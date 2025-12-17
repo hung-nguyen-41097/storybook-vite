@@ -6,22 +6,21 @@ import type { InputBaseProps } from "@mui/material/InputBase";
 export interface CustomInputProps {
   label?: string;
   InputBaseProps?: InputBaseProps;
-  required?: boolean;
-  error?: string;
-  isInvalid?: boolean;
-  labelTag?: {
-    content: string;
-    newTag?: string;
-  };
+  isRequired?: boolean;
+  isError?: boolean;
+  errorMessage?: string;
+  labelTagTitle?: string;
+  isNewLabel?: boolean;
 }
 
 export const CustomInput = ({
   label = "",
   InputBaseProps,
-  required = false,
-  error,
-  isInvalid = false,
-  labelTag,
+  isRequired = false,
+  isError = false,
+  errorMessage = "",
+  labelTagTitle = "",
+  isNewLabel = false,
 }: CustomInputProps) => {
   return (
     <div className={"custom-input"} data-testid={"custom-input__ctn"}>
@@ -34,20 +33,23 @@ export const CustomInput = ({
         >
           <span>
             {label}
-            {labelTag && (
+            {labelTagTitle && (
               <span
                 data-testid="custom-input-label"
-                className={clsx("input-header__label-tag", labelTag?.newTag)}
+                className={clsx(
+                  "input-header__label-tag",
+                  isNewLabel && "input-header__label-tag--new"
+                )}
               >
-                {labelTag.content}
+                {labelTagTitle}
               </span>
             )}
           </span>
-          {required && (
+          {isRequired && (
             <span
               className={clsx(
                 "custom-input__required-label",
-                isInvalid && "custom-input__required-label--error"
+                isError && "custom-input__required-label--error"
               )}
             >
               *Required
@@ -59,17 +61,22 @@ export const CustomInput = ({
         autoComplete={"off"}
         fullWidth
         placeholder={"Input"}
+        {...InputBaseProps}
         classes={{
           root: "custom-input__input-base-root",
-          input: "custom-input__input",
+          input: clsx(
+            "custom-input__input",
+            isError && "custom-input__input--error",
+            InputBaseProps?.disabled && "custom-input__input--disabled"
+          ),
         }}
       ></InputBase>
-      {error && (
+      {isError && (
         <span
           data-testid={"custom-input__error"}
           className={"custom-input__error"}
         >
-          {error}
+          {errorMessage}
         </span>
       )}
     </div>
